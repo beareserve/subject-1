@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="GBK">
+    <file url="file://$PROJECT_DIR$/subject-1-source/chapter-1/src/com/study/hc/thread/chapter1/thread/Demo1.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/subject-1-source/chapter-1/src/com/study/hc/thread/chapter1/thread/Demo2.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/subject-1-source/chapter-1/src/com/study/hc/thread/chapter1/thread/Demo6.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/subject-1-source/chapter-1/src/com/study/hc/thread/chapter1/thread/Demo7.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/subject-1-source/chapter-1/src/com/study/hc/thread/chapter1/thread/Demo9.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/subject-1-source/chapter-2/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/subject-1-source/chapter-3/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/subject-1-source/gateway-demo/user-service-demo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/subject-1-source/gateway-demo/website-demo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/subject-1-source/lock-demo1/src/com/study/lock/aqs/jucdemo/cdl/CDLdemo.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/subject-1-source/lock-demo1/src/com/study/lock/aqs/jucdemo/cyclicbarrier/CyclicBarrierTest.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/subject-1-source/lock-demo1/src/com/study/lock/aqs/jucdemo/semaphore/SemaphoreDemo.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/subject-1-source/lock-demo1/src/com/study/lock/aqs/source/CyclicBarrierSource.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/subject-1-source/netty-push-v1/src/main/java/com/study/netty/push/netty/XDecoder.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/subject-1-source/web-demo/src/main/java" charset="UTF-8" />
+    <file url="PROJECT" charset="GBK" />
+  </component>
+</project>

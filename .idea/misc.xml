@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/subject-1-source/gateway-demo/website-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/subject-1-source/gateway-demo/user-service-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/subject-1-source/chapter-3/pom.xml" />
+        <option value="$PROJECT_DIR$/subject-1-source/chapter-2/chapter-2/pom.xml" />
+        <option value="$PROJECT_DIR$/subject-1-source/netty-push/pom.xml" />
+        <option value="$PROJECT_DIR$/subject-1-source/netty-push-v1/pom.xml" />
+        <option value="$PROJECT_DIR$/subject-1-source/omdemo/pom.xml" />
+        <option value="$PROJECT_DIR$/subject-1-source/web-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/subject-1-source/chapter-2/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_14" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
