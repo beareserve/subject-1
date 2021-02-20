@@ -28,19 +28,16 @@ public class NIOServerV3 {
 
         Selector selector;
         LinkedBlockingQueue<Runnable> taskQueue = new LinkedBlockingQueue<>();
-
         //selector监听到有事件后，调用这个方法
         public abstract void handler(SelectableChannel channel) throws Exception;
 
         private ReactorThread() throws IOException {
             selector = Selector.open();
         }
-
         volatile boolean running = false;
 
         @Override
         public void run() {
-
             while (running) {
                 try {
                     //执行队列中的任务
@@ -49,7 +46,6 @@ public class NIOServerV3 {
                         task.run();
                     }
                     selector.select(1000);
-
                     Set<SelectionKey> selected = selector.selectedKeys();
 
                     Iterator<SelectionKey> iter = selected.iterator();

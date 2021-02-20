@@ -9,6 +9,11 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 // 多线程支持
+
+/**
+ * 异步阻塞IO
+ * 当多个客户端发送请求过来，第一个客户端未处理完毕时，后面的都阻塞住，连连接都无法接收
+ */
 public class BIOServer1 {
     private static ExecutorService threadPool = Executors.newCachedThreadPool();
 

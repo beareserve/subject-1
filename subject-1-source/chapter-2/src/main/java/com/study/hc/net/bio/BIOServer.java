@@ -7,6 +7,10 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * 同步阻塞IO
+ * 当多个客户端发送请求过来，第一个客户端未处理完毕时，后面的都阻塞住，连连接都无法接收
+ */
 public class BIOServer {
 
     public static void main(String[] args) throws Exception {
