@@ -1,8 +1,7 @@
 package com.study.netty.push.server;
 
-import com.study.netty.push.handler.NewConnectHandler;
-import com.study.netty.push.handler.WebSocketServerHandler;
 import com.study.netty.push.handler.XyNewConnectHandler;
+import com.study.netty.push.handler.XyWebSocketServerHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
@@ -15,7 +14,7 @@ public class XyWebSocketServerInitializer extends ChannelInitializer<SocketChann
         ChannelPipeline pipeline = ch.pipeline();
         pipeline.addLast(new HttpServerCodec()); //http解码器，进行http协议解码
         pipeline.addLast(new HttpObjectAggregator(65536)); //
-        pipeline.addLast(new WebSocketServerHandler()); //接收socket请求
+        pipeline.addLast(new XyWebSocketServerHandler()); //接收socket请求
         pipeline.addLast(new XyNewConnectHandler());
     }
 }

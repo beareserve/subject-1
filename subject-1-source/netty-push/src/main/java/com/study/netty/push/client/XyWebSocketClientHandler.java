@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class XyWebSocketClientHandler extends SimpleChannelInboundHandler<Object> {
 
-    private WebSocketClientHandshaker handshaker;
+    private WebSocketClientHandshaker handshake;
     private ChannelPromise handshakeFuture;
 
     public ChannelFuture getHandshakeFuture() {
@@ -24,12 +24,11 @@ public class XyWebSocketClientHandler extends SimpleChannelInboundHandler<Object
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
         handshakeFuture = ctx.newPromise();
     }
-
     static AtomicInteger counter = new AtomicInteger(0);
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
-        if (handshaker == null) {
+        if (handshake == null) {
             InetSocketAddress address = (InetSocketAddress) ctx.channel().remoteAddress();
             URI uri = null;
 
@@ -38,18 +37,24 @@ public class XyWebSocketClientHandler extends SimpleChannelInboundHandler<Object
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             }
-            handshaker = WebSocketClientHandshakerFactory.newHandshaker(uri, WebSocketVersion.V13, null, true, new DefaultHttpHeaders());
+            handshake = WebSocketClientHandshakerFactory.newHandshaker(uri, WebSocketVersion.V13, null, true, new DefaultHttpHeaders());
         }
-        handshaker.handshake(ctx.channel());
+        handshake.handshake(ctx.channel());
+    }
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        if ("true".equals(System.getProperty("netease.debug")));
+        System.out.println("WebSocket Client disconnect");
     }
 
     //    private Web
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
         Channel ch = ctx.channel();
-        if (!handshaker.isHandshakeComplete()) {
+        if (!handshake.isHandshakeComplete()) {
             try {
-                handshaker.finishHandshake(ch, (FullHttpResponse) msg);
+                handshake.finishHandshake(ch, (FullHttpResponse) msg);
                 if ("true".equals(System.getProperty("netease.debug"))) ;
                 System.out.println("WebSocket Client connected!");
                 handshakeFuture.setSuccess();
@@ -82,9 +87,14 @@ public class XyWebSocketClientHandler extends SimpleChannelInboundHandler<Object
         }
     }
 
+
     @Override
-    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        if ("true".equals(System.getProperty("netease.debug")));
-        System.out.println("WebSocket Client disconnect");
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        cause.printStackTrace();
+        if (!handshakeFuture.isDone()) {
+            handshakeFuture.setFailure(cause);
+        }
+
+        ctx.close();
     }
 }

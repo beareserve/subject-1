@@ -34,7 +34,6 @@ import io.netty.handler.codec.http.websocketx.WebSocketServerHandshakerFactory;
 import io.netty.util.AttributeKey;
 import io.netty.util.CharsetUtil;
 
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.LongAdder;
 
 import static io.netty.handler.codec.http.HttpMethod.*;
@@ -47,9 +46,7 @@ import static io.netty.handler.codec.http.HttpVersion.*;
 public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> {
 
     private static final String WEBSOCKET_PATH = "/websocket";
-
-    private WebSocketServerHandshaker handshaker;
-
+    private WebSocketServerHandshaker handshake;
     public static final LongAdder counter = new LongAdder();
 
     @Override
@@ -77,12 +74,12 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
         // 构造握手响应返回
         WebSocketServerHandshakerFactory wsFactory = new WebSocketServerHandshakerFactory(
                 getWebSocketLocation(req), null, true, 5 * 1024 * 1024);
-        handshaker = wsFactory.newHandshaker(req);
-        if (handshaker == null) {
+        handshake = wsFactory.newHandshaker(req);
+        if (handshake == null) {
             // 版本不支持
             WebSocketServerHandshakerFactory.sendUnsupportedVersionResponse(ctx.channel());
         } else {
-            handshaker.handshake(ctx.channel(), req);
+            handshake.handshake(ctx.channel(), req);
             ctx.fireChannelRead(req.retain()); // 继续传播
         }
     }
@@ -92,7 +89,7 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
         if (frame instanceof CloseWebSocketFrame) {
             Object userId = ctx.channel().attr(AttributeKey.valueOf("userId")).get();
             TestCenter.removeConnection(userId);
-            handshaker.close(ctx.channel(), (CloseWebSocketFrame) frame.retain());
+            handshake.close(ctx.channel(), (CloseWebSocketFrame) frame.retain());
             return;
         }
         if (frame instanceof PingWebSocketFrame) { // ping/pong作为心跳

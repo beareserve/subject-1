@@ -20,7 +20,6 @@ import static io.netty.handler.codec.http.HttpMethod.GET;
 public class XyWebSocketServerHandler extends SimpleChannelInboundHandler<Object> {
 
     private static final String WEBSOCKET_PATH = "/websocket";
-
     private WebSocketServerHandshaker handshake;
     public static final LongAdder counter = new LongAdder();
     
@@ -52,11 +51,6 @@ public class XyWebSocketServerHandler extends SimpleChannelInboundHandler<Object
             handshake.handshake(ctx.channel(), request);
             ctx.fireChannelRead(request.retain()); //¼ÌÐø´«²¥
         }
-    }
-
-    private String getWebSocketLocation(FullHttpRequest request) {
-        String location = request.headers().get(HttpHeaderNames.HOST) + WEBSOCKET_PATH;
-        return "ws://" + location;
     }
 
     private void sendHttpResponse(ChannelHandlerContext ctx, FullHttpRequest req, DefaultFullHttpResponse res) {
@@ -92,7 +86,18 @@ public class XyWebSocketServerHandler extends SimpleChannelInboundHandler<Object
     }
 
     @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        cause.printStackTrace();
+        ctx.close();
+    }
+
+    @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
         ctx.flush();
+    }
+
+    private String getWebSocketLocation(FullHttpRequest request) {
+        String location = request.headers().get(HttpHeaderNames.HOST) + WEBSOCKET_PATH;
+        return "ws://" + location;
     }
 }

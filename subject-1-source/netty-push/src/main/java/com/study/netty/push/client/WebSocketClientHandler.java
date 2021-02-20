@@ -49,13 +49,11 @@ import io.netty.util.CharsetUtil;
 
 import java.net.InetSocketAddress;
 import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class WebSocketClientHandler extends SimpleChannelInboundHandler<Object> {
 
-    private WebSocketClientHandshaker handshaker;
+    private WebSocketClientHandshaker handshake;
     private ChannelPromise handshakeFuture;
 
     public ChannelFuture handshakeFuture() {
@@ -71,7 +69,7 @@ public class WebSocketClientHandler extends SimpleChannelInboundHandler<Object> 
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
-        if (handshaker == null) {
+        if (handshake == null) {
             InetSocketAddress address = (InetSocketAddress) ctx.channel().remoteAddress();
             URI uri = null;
             try {
@@ -79,10 +77,10 @@ public class WebSocketClientHandler extends SimpleChannelInboundHandler<Object> 
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            handshaker = WebSocketClientHandshakerFactory.newHandshaker(
+            handshake = WebSocketClientHandshakerFactory.newHandshaker(
                     uri, WebSocketVersion.V13, null, true, new DefaultHttpHeaders());
         }
-        handshaker.handshake(ctx.channel());
+        handshake.handshake(ctx.channel());
     }
 
     @Override
@@ -93,9 +91,9 @@ public class WebSocketClientHandler extends SimpleChannelInboundHandler<Object> 
     @Override
     public void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
         Channel ch = ctx.channel();
-        if (!handshaker.isHandshakeComplete()) {
+        if (!handshake.isHandshakeComplete()) {
             try {
-                handshaker.finishHandshake(ch, (FullHttpResponse) msg);
+                handshake.finishHandshake(ch, (FullHttpResponse) msg);
                 if ("true".equals(System.getProperty("netease.debug")))
                     System.out.println("WebSocket Client connected!");
                 handshakeFuture.setSuccess();

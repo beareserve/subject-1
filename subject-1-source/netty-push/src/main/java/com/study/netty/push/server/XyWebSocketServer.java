@@ -27,9 +27,9 @@ public class XyWebSocketServer {
                 b.bind(PORT++).addListener(new ChannelFutureListener() {
                     @Override
                     public void operationComplete(ChannelFuture future) throws Exception {
-                        if ("true".equals(System.getProperty("netease.debug"))) {
+//                        if ("true".equals(System.getProperty("netease.debug"))) {
                             System.out.println("端口绑定完成：" + future.channel().localAddress());
-                        }
+//                        }
                     }
                 });
             }

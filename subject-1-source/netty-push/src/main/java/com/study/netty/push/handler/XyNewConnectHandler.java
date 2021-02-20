@@ -20,6 +20,6 @@ public class XyNewConnectHandler extends SimpleChannelInboundHandler<FullHttpReq
 
         String userId = parameters.get("userId").get(0);
         ctx.channel().attr(AttributeKey.valueOf("userId")).getAndSet(userId);
-        TestCenter.saveConnection(userId, ctx.channel());
+        TestCenter.saveConnection(userId, ctx.channel()); //±£´æÁ¬½Ó
     }
 }

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
 public class XySocketClient {
     public static void main(String[] args) throws IOException, InterruptedException {
