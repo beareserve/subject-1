@@ -21,7 +21,7 @@ public class XyWebSocketClient {
         final String host = "127.0.0.1";
         final String maxSize = "100";
         final String maxConnections = "60000";
-        int port = 9001;
+        int port = 9000;
 
         EventLoopGroup group = new NioEventLoopGroup();
 

@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="steal-pocket:war">
+    <output-path>$PROJECT_DIR$/steal-pocket/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>steal-pocket</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="steal-pocket.war">
+      <element id="artifact" artifact-name="steal-pocket:war exploded" />
+    </root>
+  </artifact>
+</component>

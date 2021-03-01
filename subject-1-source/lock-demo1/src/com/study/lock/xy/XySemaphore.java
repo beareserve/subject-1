@@ -12,11 +12,6 @@ public class XySemaphore {
 
     XyAqs aqs = new XyAqs(){
         @Override
-        public boolean tryReleaseShared() {
-            return getState().incrementAndGet() >= 0;
-        }
-
-        @Override
         public int tryAcquireShared() {
             while (true) {
                 int count = getState().get();
@@ -29,6 +24,10 @@ public class XySemaphore {
                 }
                 return -1;
             }
+        }
+        @Override
+        public boolean tryReleaseShared() {
+            return getState().incrementAndGet() >= 0;
         }
     };
 

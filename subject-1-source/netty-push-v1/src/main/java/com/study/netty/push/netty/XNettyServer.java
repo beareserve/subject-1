@@ -11,30 +11,30 @@ import io.netty.handler.codec.LineBasedFrameDecoder;
 
 public class XNettyServer {
     public static void main(String[] args) throws Exception {
-        // 1ã€ çº¿ç¨‹å®šä¹‰
-        // accept å¤„ç†è¿æ¥çš„çº¿ç¨‹æ± 
+        // 1¡¢ Ïß³Ì¶¨Òå
+        // accept ´¦ÀíÁ¬½ÓµÄÏß³Ì³Ø
         EventLoopGroup acceptGroup = new NioEventLoopGroup();
-        // read io å¤„ç†æ•°æ®çš„çº¿ç¨‹æ± 
+        // read io ´¦ÀíÊı¾İµÄÏß³Ì³Ø
         EventLoopGroup readGroup = new NioEventLoopGroup();
         try {
             ServerBootstrap b = new ServerBootstrap();
             b.group(acceptGroup, readGroup);
-            // 2ã€ é€‰æ‹©TCPåè®®ï¼ŒNIOçš„å®ç°æ–¹å¼
+            // 2¡¢ Ñ¡ÔñTCPĞ­Òé£¬NIOµÄÊµÏÖ·½Ê½
             b.channel(NioServerSocketChannel.class);
             b.childHandler(new ChannelInitializer<SocketChannel>() {
 
                 @Override
                 protected void initChannel(SocketChannel ch) throws Exception {
-                    // 3ã€ èŒè´£é“¾å®šä¹‰ï¼ˆè¯·æ±‚æ”¶åˆ°åæ€ä¹ˆå¤„ç†ï¼‰
+                    // 3¡¢ Ö°ÔğÁ´¶¨Òå£¨ÇëÇóÊÕµ½ºóÔõÃ´´¦Àí£©
                     ChannelPipeline pipeline = ch.pipeline();
-                    // TODO 3.1 å¢åŠ è§£ç å™¨
+                    // TODO 3.1 Ôö¼Ó½âÂëÆ÷
                     pipeline.addLast(new XDecoder());
-                    // TODO 3.2 æ‰“å°å‡ºå†…å®¹ handdler
+                    // TODO 3.2 ´òÓ¡³öÄÚÈİ handdler
                     pipeline.addLast(new XHandller());
                 }
             });
-            // 4ã€ ç»‘å®šç«¯å£
-            System.out.println("å¯åŠ¨æˆåŠŸï¼Œç«¯å£ 9999");
+            // 4¡¢ °ó¶¨¶Ë¿Ú
+            System.out.println("Æô¶¯³É¹¦£¬¶Ë¿Ú 9999");
             b.bind(9999).sync().channel().closeFuture().sync();
         } finally {
             acceptGroup.shutdownGracefully();

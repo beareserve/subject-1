@@ -1,6 +1,5 @@
 package com.study.netty.push.test;
 
-import com.study.netty.push.client.WebSocketClientHandler;
 import com.study.netty.push.handler.WebSocketServerHandler;
 import io.netty.channel.Channel;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
@@ -10,18 +9,18 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-// æ­£å¸¸æƒ…å†µæ˜¯ï¼Œåå°ç³»ç»Ÿé€šè¿‡æ¥å£è¯·æ±‚ï¼ŒæŠŠæ•°æ®ä¸¢åˆ°å¯¹åº”çš„MQé˜Ÿåˆ—ï¼Œå†ç”±æ¨é€æœåŠ¡å™¨è¯»å–
+// Õı³£Çé¿öÊÇ£¬ºóÌ¨ÏµÍ³Í¨¹ı½Ó¿ÚÇëÇó£¬°ÑÊı¾İ¶ªµ½¶ÔÓ¦µÄMQ¶ÓÁĞ£¬ÔÙÓÉÍÆËÍ·şÎñÆ÷¶ÁÈ¡
 public class TestCenter {
-    // æ­¤å¤„å‡è®¾ä¸€ä¸ªç”¨æˆ·ä¸€å°è®¾å¤‡ï¼Œå¦åˆ™ç”¨æˆ·çš„é€šé“åº”è¯¥æ˜¯å¤šä¸ªã€‚
-    // TODO è¿˜åº”è¯¥æœ‰ä¸€ä¸ªå®šæ—¶ä»»åŠ¡ï¼Œç”¨äºæ£€æµ‹å¤±æ•ˆçš„è¿æ¥(ç±»ä¼¼ç¼“å­˜ä¸­çš„LRUç®—æ³•ï¼Œé•¿æ—¶é—´ä¸ä½¿ç”¨ï¼Œå°±æ‹¿å‡ºæ¥æ£€æµ‹ä¸€ä¸‹æ˜¯å¦æ–­å¼€äº†)ï¼›
+    // ´Ë´¦¼ÙÉèÒ»¸öÓÃ»§Ò»Ì¨Éè±¸£¬·ñÔòÓÃ»§µÄÍ¨µÀÓ¦¸ÃÊÇ¶à¸ö¡£
+    // TODO »¹Ó¦¸ÃÓĞÒ»¸ö¶¨Ê±ÈÎÎñ£¬ÓÃÓÚ¼ì²âÊ§Ğ§µÄÁ¬½Ó(ÀàËÆ»º´æÖĞµÄLRUËã·¨£¬³¤Ê±¼ä²»Ê¹ÓÃ£¬¾ÍÄÃ³öÀ´¼ì²âÒ»ÏÂÊÇ·ñ¶Ï¿ªÁË)£»
     static ConcurrentHashMap<String, Channel> userInfos = new ConcurrentHashMap<String, Channel>();
 
-    // ä¿å­˜ä¿¡æ¯
+    // ±£´æĞÅÏ¢
     public static void saveConnection(String userId, Channel channel) {
         userInfos.put(userId, channel);
     }
 
-    // é€€å‡ºçš„æ—¶å€™ç§»é™¤æ‰
+    // ÍË³öµÄÊ±ºòÒÆ³ıµô
     public static void removeConnection(Object userId) {
         if (userId != null) {
             userInfos.remove(userId.toString());
@@ -31,22 +30,22 @@ public class TestCenter {
     final static byte[] JUST_TEST = new byte[1024];
 
     public static void startTest() {
-        // å‘ä¸€ä¸ªtonyå§
+        // ·¢Ò»¸ötony°É
         System.arraycopy("tony".getBytes(), 0, JUST_TEST, 0, 4);
         final String sendmsg = System.getProperty("netease.server.test.sendmsg", "false");
         Executors.newScheduledThreadPool(1).scheduleAtFixedRate(() -> {
             try {
-                // å‹åŠ›æµ‹è¯•ï¼Œåœ¨ç”¨æˆ·ä¸­éšæœºæŠ½å–1/10è¿›è¡Œå‘é€
+                // Ñ¹Á¦²âÊÔ£¬ÔÚÓÃ»§ÖĞËæ»ú³éÈ¡1/10½øĞĞ·¢ËÍ
                 if (userInfos.isEmpty()) {
                     return;
                 }
                 int size = userInfos.size();
                 ConcurrentHashMap.KeySetView<String, Channel> keySetView = userInfos.keySet();
                 String[] keys = keySetView.toArray(new String[]{});
-                System.out.println(WebSocketServerHandler.counter.sum() + " : å½“å‰ç”¨æˆ·æ•°é‡" + keys.length);
-                if (Boolean.valueOf(sendmsg)) { // æ˜¯å¦å¼€å¯å‘é€
+                System.out.println(WebSocketServerHandler.counter.sum() + " : µ±Ç°ÓÃ»§ÊıÁ¿" + keys.length);
+                if (Boolean.valueOf(sendmsg)) { // ÊÇ·ñ¿ªÆô·¢ËÍ
                     for (int i = 0; i < (size > 10 ? size / 10 : size); i++) {
-                        // æäº¤ä»»åŠ¡ç»™å®ƒæ‰§è¡Œ
+                        // Ìá½»ÈÎÎñ¸øËüÖ´ĞĞ
                         String key = keys[new Random().nextInt(size)];
                         Channel channel = userInfos.get(key);
                         if (channel == null) {
@@ -57,7 +56,7 @@ public class TestCenter {
                             continue;
                         }
                         channel.eventLoop().execute(() -> {
-                            channel.writeAndFlush(new TextWebSocketFrame(new String(JUST_TEST))); // æ¨é€1024å­—èŠ‚
+                            channel.writeAndFlush(new TextWebSocketFrame(new String(JUST_TEST))); // ÍÆËÍ1024×Ö½Ú
                         });
 
                     }

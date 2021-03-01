@@ -5,6 +5,9 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.util.concurrent.CountDownLatch;
 
+/**
+ * 简单约定一个协议：客户端每次发送150字节的内容
+ */
 public class XySocketClient {
     public static void main(String[] args) throws IOException, InterruptedException {
         Socket socket = new Socket("localhost", 9999);
