@@ -8,13 +8,8 @@
       <list>
         <option value="$PROJECT_DIR$/subject-1-source/gateway-demo/website-demo/pom.xml" />
         <option value="$PROJECT_DIR$/subject-1-source/gateway-demo/user-service-demo/pom.xml" />
-        <option value="$PROJECT_DIR$/subject-1-source/chapter-3/pom.xml" />
         <option value="$PROJECT_DIR$/subject-1-source/chapter-2/chapter-2/pom.xml" />
-        <option value="$PROJECT_DIR$/subject-1-source/netty-push/pom.xml" />
-        <option value="$PROJECT_DIR$/subject-1-source/netty-push-v1/pom.xml" />
         <option value="$PROJECT_DIR$/subject-1-source/omdemo/pom.xml" />
-        <option value="$PROJECT_DIR$/subject-1-source/web-demo/pom.xml" />
-        <option value="$PROJECT_DIR$/subject-1-source/chapter-2/pom.xml" />
         <option value="$PROJECT_DIR$/steal-pocket/pom.xml" />
       </list>
     </option>

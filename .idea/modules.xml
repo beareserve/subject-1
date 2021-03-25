@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/subject-1-source/chapter-2/chapter-2.iml" filepath="$PROJECT_DIR$/subject-1-source/chapter-2/chapter-2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/subject-1-source/netty-push/netty-push.iml" filepath="$PROJECT_DIR$/subject-1-source/netty-push/netty-push.iml" />
-      <module fileurl="file://$PROJECT_DIR$/subject-1-source/netty-push-v1/netty-push-v1.iml" filepath="$PROJECT_DIR$/subject-1-source/netty-push-v1/netty-push-v1.iml" />
       <module fileurl="file://$PROJECT_DIR$/subject-1-source/omdemo/om-demo.iml" filepath="$PROJECT_DIR$/subject-1-source/omdemo/om-demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/subject-1-source/chapter-3/performance.iml" filepath="$PROJECT_DIR$/subject-1-source/chapter-3/performance.iml" />
       <module fileurl="file://$PROJECT_DIR$/steal-pocket/steal-pocket.iml" filepath="$PROJECT_DIR$/steal-pocket/steal-pocket.iml" />
       <module fileurl="file://$PROJECT_DIR$/subject-1.iml" filepath="$PROJECT_DIR$/subject-1.iml" />
       <module fileurl="file://$PROJECT_DIR$/subject-1-source/gateway-demo/user-service-demo/user-service-demo.iml" filepath="$PROJECT_DIR$/subject-1-source/gateway-demo/user-service-demo/user-service-demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/subject-1-source/web-demo/web-demo.iml" filepath="$PROJECT_DIR$/subject-1-source/web-demo/web-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/subject-1-source/gateway-demo/website-demo/website-demo.iml" filepath="$PROJECT_DIR$/subject-1-source/gateway-demo/website-demo/website-demo.iml" />
     </modules>
   </component>

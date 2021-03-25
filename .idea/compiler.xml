@@ -7,14 +7,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="website-demo" />
-        <module name="netty-push" />
-        <module name="netty-push-v1" />
         <module name="om-demo" />
-        <module name="performance" />
-        <module name="chapter-2" />
         <module name="steal-pocket" />
         <module name="user-service-demo" />
-        <module name="web-demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
