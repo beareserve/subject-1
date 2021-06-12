@@ -6,10 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="user-service-demo" />
+        <module name="steal-pocket" />
         <module name="website-demo" />
         <module name="om-demo" />
-        <module name="steal-pocket" />
-        <module name="user-service-demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -18,7 +18,7 @@
       <module name="netty-push-v1" target="8" />
       <module name="om-demo" target="8" />
       <module name="performance" target="1.8" />
-      <module name="steal-pocket" target="1.7" />
+      <module name="steal-pocket" target="1.8" />
       <module name="user-service-demo" target="1.8" />
       <module name="web-demo" target="1.8" />
       <module name="website-demo" target="1.8" />

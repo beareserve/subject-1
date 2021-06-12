@@ -1,7 +1,5 @@
 package com.study.lock.aqs.jucdemo.semaphore;
 
-import com.study.lock.xy.XySemaphore;
-
 import java.util.Random;
 
 // 信号量机制
@@ -9,7 +7,7 @@ public class  SemaphoreDemo {
     public static void main(String[] args) {
         SemaphoreDemo semaphoreTest = new SemaphoreDemo();
         int N = 9;            // 客人数量
-        XySemaphore semaphore = new XySemaphore(5); // 手牌数量，限制请求数量
+        NeteaseSemaphore semaphore = new NeteaseSemaphore(5); // 手牌数量，限制请求数量
         for (int i = 0; i < N; i++) {
             String vipNo = "vip-00" + i;
             new Thread(() -> {
